@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h1>About Page!!!</h1>
+<p>This is a template!</p>
+
+<p>
+    {{my_text}}, {{my_number}}, {{my_list}}
+</p>
+
+<ul>
+    {% for iter in my_list %}
+        {% if iter == 3 %}
+        <li>{{iter|add:100}}</li>
+        {% elif iter == 4 %}
+        <li>{{iter|add:1000}}</li>
+        {% else %}
+        <li>{{iter}}</li>
+        {% endif %}
+    {% endfor %}
+</ul>
+
+{% endblock %}
