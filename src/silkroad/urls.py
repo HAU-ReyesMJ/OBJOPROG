@@ -18,6 +18,7 @@ from django.urls import path
 
 from pages.views import home_view, about_view
 from item.views import item_detail_view, item_create_view
+from chatbox.views import chatbox_view
 
 urlpatterns = [
     path('', home_view, name='home'),
@@ -26,4 +27,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('item/', item_detail_view),
     path('itemcreate/', item_create_view),
+    path('chatbox/', chatbox_view),
 ]
