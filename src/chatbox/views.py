@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.template.context import RequestContext
 
 from .forms import ChatboxForm
 from .models import Chatbox
@@ -11,5 +12,5 @@ def chatbox_view(request):
     context = {
         'form': form
     }
-    return render(request, "chatbox/chatbox_.html", context)
-    
+    return render(request, "chatbox/chatbox.html", context_instance=RequestContext(request))
+    # return render_to_response("index.html", context_instance=RequestContext(request))
