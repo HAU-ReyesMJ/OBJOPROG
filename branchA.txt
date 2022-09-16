@@ -1,1 +1,2 @@
 hello branchA!
+hello from branchB!
