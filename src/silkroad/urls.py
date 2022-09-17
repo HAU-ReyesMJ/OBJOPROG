@@ -17,13 +17,15 @@ from django.contrib import admin
 from django.urls import path
 
 from pages.views import home_view, about_view
-from item.views import item_detail_view, item_create_view
+from item.views import item_detail_view, item_create_view, item_edit_view, item_delete_view
 
 urlpatterns = [
     path('', home_view, name='home'),
     path('home/', home_view, name='home'),
     path('about/', about_view),
     path('admin/', admin.site.urls),
-    path('item/', item_detail_view),
-    path('itemcreate/', item_create_view),
+    path('item_view/', item_detail_view),
+    path('item_create/', item_create_view),
+    path('item_edit/', item_edit_view),
+    path('item_delete/', item_delete_view),
 ]

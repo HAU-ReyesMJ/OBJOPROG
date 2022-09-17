@@ -14,7 +14,7 @@ def item_create_view(request):
     return render(request, "item/item_create.html", context)
 
 def item_detail_view(request):
-    obj = Item.objects.get(id=1)
+    obj = Item.objects.all()#.get(id=1)
     # context = {
     #     'title': obj.title,
     #     'description': obj.description,
@@ -25,3 +25,17 @@ def item_detail_view(request):
         'object': obj
     }
     return render(request, "item/item_detail.html", context)
+
+def item_delete_view(request):
+    obj = Item.objects.all()
+    context = {
+        'object': obj
+    }
+    return render(request, "item/item_delete.html", context)
+
+def item_edit_view(request):
+    obj = Item.objects.all()
+    context = {
+        'object': obj
+    }
+    return render(request, "item/item_edit.html", context)

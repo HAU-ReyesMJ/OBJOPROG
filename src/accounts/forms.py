@@ -12,6 +12,4 @@ class ItemForm(forms.ModelForm):
             'description',
             'price',
             'name',
-            'location',
-            'markAsSold',
         ]
