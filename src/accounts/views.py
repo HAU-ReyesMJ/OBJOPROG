@@ -1,26 +1,32 @@
-from django.shortcuts import render
-
-# from .forms import AccountsForm
-# from .models import Accounts
-# # Create your views here.
-# def accounts_view(request):
-#     form = AccountsForm(request.POST or None)
-#     if form.is_valid():
-#         form.save()
-
-#     context = {
-#         'form': form
-#     }
-#     return render(request, "accounts/accounts.html", context)
-
 from django.shortcuts import render, redirect
-from .forms import AccountForm
-from .models import Account
+from django.contrib.auth import login, authenticate
+from django.contrib import messages
+# from django.contrib.auth.forms import UserCreationForm
+from .forms import UserRegistrationForm
+
+def home(request):
+    return render(request, 'accounts/home.html')
 
 def register(request):
-    context = {}
-    return render(request, 'accounts/register.html', context)
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
 
-def login(request):
-    context = {}
-    return render(request, 'accounts/login.html', context)
+            messages.success(request, f'Your account has been created. You can log in now!')    
+            return redirect('/home')
+    else:
+        form = UserRegistrationForm()
+
+    context = {'form': form}
+    return render(request, 'accounts/register.html', context)
+# from .forms import AccountForm
+# from .models import Account
+
+# def register(request):
+#     context = {}
+#     return render(request, 'accounts/register.html', context)
+
+# def login(request):
+#     context = {}
+#     return render(request, 'accounts/login.html', context)
