@@ -28,4 +28,5 @@ urlpatterns = [
     # My App
     path('item/', include('item.urls')), 
     path('', include('accounts.urls')), 
+    path('', include('contacts.urls')), 
 ]
