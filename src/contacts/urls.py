@@ -5,5 +5,5 @@ from .views import (
 
 app_name= 'contacts'
 urlpatterns = [
-    path('contacts/', contacts_view, name='contacts_view'),
+    path('contacts/', contacts_view, name='contact_view'),
 ]
