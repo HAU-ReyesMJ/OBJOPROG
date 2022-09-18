@@ -13,6 +13,14 @@ from django.shortcuts import render
 #     }
 #     return render(request, "accounts/accounts.html", context)
 
+from django.shortcuts import render, redirect
+from .forms import AccountForm
+from .models import Account
 
-from .forms import ItemForm
-from .models import Accounts
+def register(request):
+    context = {}
+    return render(request, 'accounts/register.html', context)
+
+def login(request):
+    context = {}
+    return render(request, 'accounts/login.html', context)

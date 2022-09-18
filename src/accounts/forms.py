@@ -1,15 +1,9 @@
 from django import forms
+from .models import Account
 
-
-from .models import Item
-
-
-class ItemForm(forms.ModelForm):
+class AccountForm(forms.ModelForm):
     class Meta:
-        model = Item
+        model = Account
         fields = [
-            'title',
-            'description',
-            'price',
-            'name',
+            'lastName',
         ]

@@ -1,8 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>View Items - from the item app</h1>
 
+<style>
+    .btn-group-xs > .btn, .btn-xs {
+      padding: .25rem .4rem;
+      font-size: .875rem;
+      line-height: .5;
+      border-radius: .2rem;
+    }
+
+    tr:hover {
+        background-color: lightyellow;
+      }
+    </style>
+
+<h1>Delete - from the item app</h1>
 <table class="table">
     <thead>
       <tr>
@@ -11,16 +24,25 @@
         <th scope="col">Description</th>
         <th scope="col">Price</th>
         <th scope="col">Name</th>
+        <th scope="col">Confirm Delete</th>
+        <th scope="col">Quick Delete</th>
       </tr>
     </thead>
     <tbody>
         {% for i in object %}
         <tr>
-            <th scope="row">{{ forloop.counter }}</th>
+            <th scope="row">{{ i.id }}</th>
             <td>{{i.title}}</td>
             <td>{{i.description}}</td>
             <td>{{i.price}}</td>
             <td>{{i.name}}</td>
+            <td><a class="btn btn-sm btn-outline-danger" href="{% url 'item:item_delete' i.id %}">Delete</a></td>
+            <form action="{% url 'item:item_delete' i.id %}" method="POST">
+                {% csrf_token %}
+            <td><input class="btn btn-sm btn-outline-danger" type="submit" value="Delete"></td>
+            </form>
+            
+            
         </tr>
         {% endfor %}
     </tbody>

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Are you sure you want to delete?</h1>
+<form action="{% url 'item:item_delete' object.id %}" method="POST">
+  {% csrf_token %}
+  <a href={% url 'item:item_delete' %}Cancel</a>
+  <input class="btn btn-outline-danger" type="submit" value="Delete">
+
+</form>
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Name</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">{{object.id}}</th>
+            <td>{{object.title}}</td>
+            <td>{{object.description}}</td>
+            <td>{{object.price}}</td>
+            <td>{{object.name}}</td>
+        </tr>
+    </tbody>
+  </table>
+{% endblock %}

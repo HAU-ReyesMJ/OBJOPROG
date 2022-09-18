@@ -11,16 +11,21 @@
         <th scope="col">Description</th>
         <th scope="col">Price</th>
         <th scope="col">Name</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
         {% for i in object %}
         <tr>
-            <th scope="row">{{ forloop.counter }}</th>
-            <td class="editable" data-id="{{ i.id }}" data-type="title">{{i.title}}</td>
-            <td class="editable" data-id="{{ i.id }}" data-type="description">{{i.description}}</td>
-            <td class="editable" data-id="{{ i.id }}" data-type="price">{{i.price}}</td>  
-            <td class="editable" data-id="{{ i.id }}" data-type="name">{{i.name}}</td>
+            <form action="{{ i.get_absolute_url }}" method="POST">
+                {% csrf_token %}
+                <th scope="row">{{i.id}}</th>
+                <td class="editable" data-id="{{ i.id }}" data-type="title">{{i.title}}</td>
+                <td class="editable" data-id="{{ i.id }}" data-type="description">{{i.description}}</td>
+                <td class="editable" data-id="{{ i.id }}" data-type="price">{{i.price}}</td>  
+                <td class="editable" data-id="{{ i.id }}" data-type="name">{{i.name}}</td>
+                <td><input class="btn btn-sm btn-outline-danger" type="submit" value="Edit"></td>
+            </form>
         </tr>
         {% endfor %}
     </tbody>
