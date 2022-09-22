@@ -5,8 +5,9 @@ from django.shortcuts import render
 def home_view(request,  *args, **kwargs):
     print(args, kwargs)
     print(request.user)
+    context = { 'obj': request.user }
     #return HttpResponse("<h1>Hello World</h1>")
-    return render(request, "home.html", {})
+    return render(request, "home.html", context)
 
 def about_view(request, *args, **kwargs):
     my_context = {
