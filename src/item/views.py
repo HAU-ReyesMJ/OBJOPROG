@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
+from django.db.models import Q
 
 from .forms import ItemForm
 from .models import Item
@@ -27,10 +28,24 @@ def item_detail_view(request, id=None):
         obj = Item.objects.get(id=id)
         context = { 'object': obj }
         return render(request, "item/item_detail_inidividual.html", context)
+    elif 'q' in request.GET:
+        q = request.GET['q']
+        # data = Data.objects.filter(last_name__icontains=q)
+        multiple_q = Q(Q(title__icontains=q) | Q(description__icontains=q) | Q(price__icontains=q) | Q(name__icontains=q))
+        data = Item.objects.filter(multiple_q)
     else:
-        obj = Item.objects.all()
-        context = { 'object': obj }
-        return render(request, "item/item_detail.html", context)
+        data = Item.objects.all()
+    context = {
+        'object': data
+    }
+    return render(request, 'item/item_detail.html', context)
+
+    # else:
+    #     obj = Item.objects.all()
+    #     context = { 'object': obj }
+    #     return render(request, "item/item_detail.html", context)
+
+    
 
 def item_edit_view(request, id=None):
     if id:

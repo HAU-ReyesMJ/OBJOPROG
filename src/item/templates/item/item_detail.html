@@ -2,6 +2,10 @@
 
 {% block content %}
 <h1>View Items - from the item app</h1>
+<form action="{% url 'item:item_view' %}" method="get">
+  <input name="q" type="text" placeholder="Search...">
+</form>
+
 
 <table class="table">
     <thead>
