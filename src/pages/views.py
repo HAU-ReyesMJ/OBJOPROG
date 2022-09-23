@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 def home_view(request,  *args, **kwargs):
@@ -7,7 +7,9 @@ def home_view(request,  *args, **kwargs):
     print(request.user)
     context = { 'obj': request.user }
     #return HttpResponse("<h1>Hello World</h1>")
-    return render(request, "home.html", context)
+    if request.user.is_authenticated:
+        return render(request, "home.html", context)
+    return redirect('/login')
 
 def about_view(request, *args, **kwargs):
     my_context = {
