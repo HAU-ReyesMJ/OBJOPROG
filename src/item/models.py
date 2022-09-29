@@ -5,12 +5,12 @@ from django.urls import reverse
 
 # Create your models here.
 class Item(models.Model):
-    title       = models.CharField(max_length=120)
+    title = models.CharField(max_length=120)
     description = models.TextField(null=True, blank=True)
-    price       = models.DecimalField(decimal_places=2, max_digits=1000)
-    name        = models.TextField(null=True, blank=True)
-    location    = models.TextField(null=True, blank=True)
-    markAsSold  = models.BooleanField()
+    price = models.DecimalField(decimal_places=2, max_digits=1000)
+    name = models.TextField(null=True, blank=True)
+    location = models.TextField(null=True, blank=True)
+    markAsSold = models.BooleanField()
 
     def get_absolute_url(self):
         return reverse("item:item_edit", kwargs={"id": self.id})

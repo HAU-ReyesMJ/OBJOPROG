@@ -1,55 +1,81 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
-    <title>Bootstrap Example</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-  </head>
-  <body class="p-3 m-0 border-0 bd-example">
+<!DOCTYPE html>
 
-    <!-- Example Code -->
-    
-    <nav class="navbar navbar-expand-lg bg-light">
+{% load static %}
+<html lang="en">
+  <head> </head>
+  <body>
+    <nav
+      id="main-navbar"
+      class="navbar navbar-expand-lg navbar-light bg-white fixed-top"
+    >
       <div class="container-fluid">
+        <a class="navbar-brand" href="#" onclick="myFunction('leftNav')">
+          <img src={% static "images/list.svg" %}>
+        </a>
+        </svg>
         <a class="navbar-brand" href="/">🐪 Silk Road</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <!-- ITEM DROPDOWN MENU -->
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
                 📦 Items
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/item/view">👀 View Items</a></li>
-                <li><a class="dropdown-item" href="/item/new">➕ Add Items</a></li>
-                <li><a class="dropdown-item" href="/item/edit">✏️ Edit Items</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="/item/delete">🗑️ Delete Items</a></li>
+                <li>
+                  <a class="dropdown-item" href="/item/view">👀 View Items</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/item/new">➕ Add Items</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/item/edit">✏️ Edit Items</a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="/item/delete"
+                    >🗑️ Delete Items</a
+                  >
+                </li>
               </ul>
             </li>
-
-
-
-
 
             <li class="nav-item">
               <a class="nav-link" href="/about">🤔 About</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
                 😺Admin
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="/admin">Admin login</a></li>
                 <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
               </ul>
             </li>
             <li class="nav-item">
@@ -60,14 +86,11 @@
             </li>
           </ul>
 
-          
-          <!--
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-            -->
-            <ul class="navbar-nav mb-2 mb-lg-0">
+          <ul class="navbar-nav mb-2 mb-lg-0">
             {% if user.is_authenticated %}
+            <a class="navbar-brand" href="#" onclick="myFunction('contactList')">
+              <img src={% static "images/people-fill.svg" %}>
+            </a>
             <li class="nav-item">
               <a class="nav-link" href="/logout">Logout</a>
             </li>
@@ -80,11 +103,8 @@
             </li>
             {% endif %}
           </ul>
-          </form>
         </div>
       </div>
     </nav>
-    
-    <!-- End Example Code -->
   </body>
 </html>
