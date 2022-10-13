@@ -13,6 +13,9 @@
     {% block title %}
     <title>Silk Road</title>
     {% endblock %}
+        <!-- semantic UI -->
+        <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     
@@ -36,6 +39,14 @@
 
           {% if user.is_authenticated %}
             <div class="left" id="leftNav">
+              <div class="row">
+                  <div class="list-group list-group-flush" id="list-tab" role="tablist">
+                    <a class="list-group-item list-group-item-action" data-toggle="list" href="/" role="tab" aria-controls="home">Home</a>
+                    <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="/myprofile/" role="tab" aria-controls="profile">Profile</a>
+                    <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="/my-invites/" role="tab" aria-controls="settings">Friend Requests</a>
+                    <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="/all-profiles/" role="tab" aria-controls="settings">All Profiles</a>
+                  </div>
+              </div>
             </div>
           {%endif%}
 

@@ -1,0 +1,7 @@
+
+<h1>Profile of: {{request.user}}</h1>
+{%for friend in profile.get_friends%}
+    {{friend}}
+    <br>
+{%endfor%}
+Friends number: {{profile.get_friends_no}}

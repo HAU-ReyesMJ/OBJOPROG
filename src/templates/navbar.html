@@ -92,6 +92,9 @@
               <img src={% static "images/people-fill.svg" %}>
             </a>
             <li class="nav-item">
+              <a class="nav-link" href="/">{{request.user}}</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="/logout">Logout</a>
             </li>
             {% else %}

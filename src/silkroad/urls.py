@@ -15,21 +15,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.conf.urls.static import static
+from django.conf import settings
 
 from pages.views import home_view, about_view
 from accounts import views as accounts_views
+
 # from item.views import item_detail_view, item_create_view, item_edit_view, item_delete_view
 
 urlpatterns = [
-    path('', home_view, name='home'),
-    path('about/', about_view),
-    path('admin/', admin.site.urls),
-
+    path("", home_view, name="home"),
+    path("about/", about_view),
+    path("admin/", admin.site.urls),
     # My App
-    path('item/', include('item.urls')), 
-    path('', include('accounts.urls')), 
-    path('', include('contacts.urls')), 
-
+    path("item/", include("item.urls")),
+    path("", include("accounts.urls")),
+    path("", include("contacts.urls")),
     # Account App
     # path('admin/', admin.site.urls),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
