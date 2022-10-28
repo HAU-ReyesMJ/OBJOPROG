@@ -11,7 +11,7 @@
         <div class="ui grid">
             <div class="row">
                 <div class="three wide column">
-                    <img class="ui small circular image" src={{obj.avatar.url}}>
+                    <img class="ui small circular image" src={{obj.image.url}}>
                 </div>
                 <div class="thirteen wide column">
                     <h3>{{obj.user}}</h3>
@@ -23,7 +23,7 @@
                         <form action="{% url 'accounts:send-invite' %}" method="POST">
                             {% csrf_token %}
                             <input type="hidden" name="profile_pk" value={{obj.pk}}>
-                            <button type="submit" class="ui positive basic button mb-5 w-big"><i class="plus square icon"></i>Add to friends</button>
+                            <button type="submit" class="ui positive basic button mb-5 w-big"><i class="bi bi-plus-square"></i> Add to friends</button>
                         </form>
                      {% endif %}
 
@@ -35,7 +35,7 @@
                     <form action="{% url 'accounts:remove-friend' %}" method="POST">
                         {% csrf_token %}
                         <input type="hidden" name="profile_pk" value={{obj.pk}}>
-                        <button type="submit" class="ui negative basic button mb-5 w-big"><i class="minus square icon"></i>Remove from friends</button>
+                        <button type="submit" class="ui negative basic button mb-5 w-big"><i class="bi bi-dash-square"></i> Remove from friends</button>
                     </form>
                     {% endif %}
                 </div>
@@ -45,4 +45,12 @@
     </div>
     {%endfor%}
     </ul>
+    <style>
+        .image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+    </style>
 {% endblock %}

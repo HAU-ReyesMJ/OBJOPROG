@@ -81,7 +81,7 @@ def invite_profiles_list_view(request):
 def profiles_list_view(request):
     user = request.user
     qs = Profile.objects.get_all_profiles(user)
-
+    print("hello world")
     context = {
         "qs": qs,
     }

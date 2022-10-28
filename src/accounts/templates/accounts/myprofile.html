@@ -2,9 +2,11 @@
 
 {% block content %}
     <h1>Profile of: {{request.user}}</h1>
-    {%for friend in profile.get_friends%}
-        {{friend}}
+    {%for friend in profile.get_friends_profile%}
+        {{friend.image.url}}
+        {{friend.user}}
         <br>
     {%endfor%}
     Friends number: {{profile.get_friends_no}}
+    hello
 {% endblock %}

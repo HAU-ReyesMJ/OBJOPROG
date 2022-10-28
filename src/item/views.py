@@ -5,13 +5,17 @@ from django.db.models import Q
 from .forms import ItemForm
 from .models import Item
 
+from accounts.models import Profile
+
 # Create your views here.
 def item_create_view(request):
     form = ItemForm(request.POST or None)
     form_class = ItemForm
 
     if form.is_valid():
-        form.save()
+        obj = form.save(commit=False)
+        obj.name = request.user.get_username()
+        obj.save()
 
     context = {"form": form}
     return render(request, "item/item_create.html", context)

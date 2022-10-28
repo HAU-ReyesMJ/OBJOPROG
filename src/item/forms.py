@@ -13,7 +13,7 @@ class ItemForm(forms.ModelForm):
             "location",
             "markAsSold",
         ]
-
+        exclude = ("name",)
         widgets = {
             "title": forms.TextInput(attrs={"class": "form-control"}),
             # 'description':forms.TextInput(attrs={'class': 'form-control'}),

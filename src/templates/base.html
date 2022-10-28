@@ -2,28 +2,23 @@
 <html>
   <head>
     {% block head %}
+    
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
-      crossorigin="anonymous"
-    />
     {% block title %}
     <title>Silk Road</title>
     {% endblock %}
-        <!-- semantic UI -->
-        <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <!-- semantic UI -->
+    <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-      crossorigin="anonymous"
-    ></script>
+    
+    
 
     <link
       rel="icon"
@@ -39,14 +34,14 @@
 
           {% if user.is_authenticated %}
             <div class="left" id="leftNav">
-              <div class="row">
-                  <div class="list-group list-group-flush" id="list-tab" role="tablist">
-                    <a class="list-group-item list-group-item-action" data-toggle="list" href="/" role="tab" aria-controls="home">Home</a>
-                    <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="/myprofile/" role="tab" aria-controls="profile">Profile</a>
-                    <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="/my-invites/" role="tab" aria-controls="settings">Friend Requests</a>
-                    <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="/all-profiles/" role="tab" aria-controls="settings">All Profiles</a>
-                  </div>
-              </div>
+              <div class="list-group list-group-flush">
+                <button type="button" id="xxx" class="btn btn-secondary text-start btn-lg fs-5 fw-normal"><a href="/" style="color:inherit"><i class="bi bi-house-door" id="bsIcon"></i> Home</a></button>
+                <button type="button" id="xxx" class="btn btn-secondary text-start btn-lg fs-5 fw-normal"><a href="#" style="color:inherit"><i class="bi bi-postcard" id="bsIcon"></i> Feed</a></button>
+                <button type="button" id="xxx" class="btn btn-secondary text-start btn-lg fs-5 fw-normal"><a href="#" style="color:inherit"><i class="bi bi-shop-window" id="bsIcon"></i> Marketplace</a></button>
+                <button type="button" id="xxx" class="btn btn-secondary text-start btn-lg fs-5 fw-normal"><a href="/myprofile/" style="color:inherit"><i class="bi bi-person-lines-fill" id="bsIcon"></i> My Profile</a></button>
+                <button type="button" id="xxx" class="btn btn-secondary text-start btn-lg fs-5 fw-normal"><a href="/my-invites/" style="color:inherit"><i class="bi bi-person-plus" id="bsIcon"></i> Friend Requests</a></button>
+                <button type="button" id="xxx" class="btn btn-secondary text-start btn-lg fs-5 fw-normal"><a href="/all-profiles/" style="color:inherit"><i class="bi bi-search" id="bsIcon"></i> All Profiles</a></button>
+                </div>
             </div>
           {%endif%}
 
@@ -57,8 +52,10 @@
 
           {% if user.is_authenticated %}
             <div class="right" id="contactList">
-              {% load contacts_data %}    
-              {% render_logged_in_user_list %}
+              {% load accounts_tag %}
+              {% render_logged_in_userx_list %}
+              {% comment %} {% load contacts_data %}    
+              {% render_logged_in_user_list %} {% endcomment %}
             </div>
           {%endif%}
 
@@ -66,6 +63,40 @@
       {% comment %} <div class="footer">Footer </div> {% endcomment %}
   </div>
     <style>
+      html *
+      {
+        font-size: 1em !important;
+        color: #C2C3C4 !important;
+        font-family: "Segoe UI" !important;
+      }
+      #bsIcon {
+        padding-right: 20px;
+      }
+      #leftNav {
+        background-color: #2F3136;
+        padding: 12px;
+      }
+      button#xxx {
+        background-color: #2F3136;
+        //font-size: xx-large;
+        border: none;
+        cursor: pointer;
+        outline: none;
+      }
+      button#xxx:hover {
+        background-color: #35383D;
+        //font-size: xx-large;
+        //border: none;
+        //cursor: pointer;
+        //outline: none;
+      }
+      button#xxx:active {
+        background-color: #3A3E44;
+        //font-size: xx-large;
+        //border: none;
+        //cursor: pointer;
+        //outline: none;
+      }
       .flex-container {
         display: flex;
         overflow: hidden;
@@ -85,6 +116,7 @@
      }
       body {
         margin: 0;
+        background-color: #36393F;
      }
       .full-screen {
         display: flex;
@@ -92,12 +124,12 @@
         flex-direction: column;
      }
       .full-screen > * {
+        height: 48px;
         flex: 0 0 auto;
         overflow: scroll;
         overflow-x: hidden;
      }
       .full-screen > .header, .full-screen > .footer {
-        height: 50px;
         background: #555;
         color: white;
      }
@@ -115,10 +147,15 @@
         overflow: scroll;
      }
       .full-screen > .main > .left, .full-screen > .main > .right {
-        width: 200px;
+        width: 240px;
         background: #eee;
         overflow-x: hidden;
         overflow-y: auto;
+     }
+     .full-screen > .main > .right {
+        background-color: #2f3136;
+        padding: 8px;
+        height: 100%;
      }
       .full-screen > .main > .middle {
         flex: 1 1 auto;
@@ -135,7 +172,33 @@
   </body>
 </html>
 {% block script %}
+
 <script>
+  
+  if (typeof jQuery != 'undefined') {  
+    // jQuery is loaded => print the version
+    console.log(jQuery.fn.jquery);
+  }
+
+  $('[data-bs-toggle="popover"]').popover({
+      placement: 'left',
+      html: true,
+      content: function () {
+        return $('.popper-content').html();
+    }
+    });
+
+  $('body').on('click', function (e) {
+    $('[data-bs-toggle="popover"]').each(function () {
+    
+        //the 'is' for buttons that trigger popups
+        //the 'has' for icons within a button that triggers a popup
+        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+            $(this).popover('hide');
+        }
+    });
+  });
+
   function myFunction(x) {
     var x = document.getElementById(x);
     if (x.style.display === "none") {
@@ -145,10 +208,12 @@
     }
   }
   console.log("Hello world!");
+{% comment %} 
   const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
   const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
   const popover = new bootstrap.Popover('.example-popover', {
     container: 'profileCard'
   })
+   {% endcomment %}
 </script>
 {% endblock %}

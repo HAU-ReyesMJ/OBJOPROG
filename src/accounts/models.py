@@ -31,17 +31,21 @@ class ProfileManager(models.Manager):
         profiles = Profile.objects.all().exclude(user=me)
         return profiles
 
+    def get_all_friends_profile(self, me):
+        profiles = Profile.objects.all().filter(user=me.get_friends())
+        return profiles
+
 
 class Profile(models.Model):
     first_name = models.CharField(max_length=200, blank=True)
     last_name = models.CharField(max_length=200, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(default="", max_length=300)
-    avatar = models.ImageField(default="avatar.png", upload_to="avatars/")
     friends = models.ManyToManyField(User, blank=True, related_name="friends")
     slug = models.SlugField(unique=True, blank=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(default="default.png", upload_to="profile_pics")
 
     objects = ProfileManager()
 
@@ -52,7 +56,12 @@ class Profile(models.Model):
         return reverse("accounts:profile-detail-view", kwargs={"slug": self.slug})
 
     def get_friends(self):
+        print("fuck")
         return self.friends.all()
+
+    def get_friends_profile(self):
+        qs = Profile.objects.all().filter(user__in=self.friends.all())
+        return qs
 
     def get_friends_no(self):
         return self.friends.all().count()
