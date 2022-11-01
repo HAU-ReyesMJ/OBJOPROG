@@ -35,12 +35,12 @@
           {% if user.is_authenticated %}
             <div class="left" id="leftNav">
               <div class="list-group list-group-flush">
-                <button type="button" id="xxx" class="btn btn-secondary text-start btn-lg fs-5 fw-normal"><a href="/" style="color:inherit"><i class="bi bi-house-door" id="bsIcon"></i> Home</a></button>
-                <button type="button" id="xxx" class="btn btn-secondary text-start btn-lg fs-5 fw-normal"><a href="#" style="color:inherit"><i class="bi bi-postcard" id="bsIcon"></i> Feed</a></button>
-                <button type="button" id="xxx" class="btn btn-secondary text-start btn-lg fs-5 fw-normal"><a href="#" style="color:inherit"><i class="bi bi-shop-window" id="bsIcon"></i> Marketplace</a></button>
-                <button type="button" id="xxx" class="btn btn-secondary text-start btn-lg fs-5 fw-normal"><a href="/myprofile/" style="color:inherit"><i class="bi bi-person-lines-fill" id="bsIcon"></i> My Profile</a></button>
-                <button type="button" id="xxx" class="btn btn-secondary text-start btn-lg fs-5 fw-normal"><a href="/my-invites/" style="color:inherit"><i class="bi bi-person-plus" id="bsIcon"></i> Friend Requests</a></button>
-                <button type="button" id="xxx" class="btn btn-secondary text-start btn-lg fs-5 fw-normal"><a href="/all-profiles/" style="color:inherit"><i class="bi bi-search" id="bsIcon"></i> All Profiles</a></button>
+                <a href="/" style="color:inherit"><button class="btn btn-secondary text-start btn-lg fs-5 fw-normal" type="button" id="xxx" ><i class="bi bi-house-door" id="bsIcon"></i> Home</button></a>
+                <a href="#" style="color:inherit"><button class="btn btn-secondary text-start btn-lg fs-5 fw-normal" type="button" id="xxx" ><i class="bi bi-postcard" id="bsIcon"></i> Feed</button></a>
+                <a href="/item/view/" style="color:inherit"><button class="btn btn-secondary text-start btn-lg fs-5 fw-normal" type="button" id="xxx" ><i class="bi bi-shop-window" id="bsIcon"></i> Marketplace</button></a>
+                <a href="/myprofile/" style="color:inherit"><button class="btn btn-secondary text-start btn-lg fs-5 fw-normal" type="button" id="xxx" ><i class="bi bi-person-lines-fill" id="bsIcon"></i> My Profile</button></a>
+                <a href="/my-invites/" style="color:inherit"><button class="btn btn-secondary text-start btn-lg fs-5 fw-normal" type="button" id="xxx" ><i class="bi bi-person-plus" id="bsIcon"></i> Friend Requests</button></a>
+                <a href="/all-profiles/" style="color:inherit"><button class="btn btn-secondary text-start btn-lg fs-5 fw-normal" type="button" id="xxx" ><i class="bi bi-search" id="bsIcon"></i> All Profiles</button></a>
                 </div>
             </div>
           {%endif%}
@@ -82,6 +82,7 @@
         border: none;
         cursor: pointer;
         outline: none;
+        width: 100%;
       }
       button#xxx:hover {
         background-color: #35383D;
@@ -154,7 +155,7 @@
      }
      .full-screen > .main > .right {
         background-color: #2f3136;
-        padding: 8px;
+        padding: 21px 8px;
         height: 100%;
      }
       .full-screen > .main > .middle {
@@ -179,25 +180,6 @@
     // jQuery is loaded => print the version
     console.log(jQuery.fn.jquery);
   }
-
-  $('[data-bs-toggle="popover"]').popover({
-      placement: 'left',
-      html: true,
-      content: function () {
-        return $('.popper-content').html();
-    }
-    });
-
-  $('body').on('click', function (e) {
-    $('[data-bs-toggle="popover"]').each(function () {
-    
-        //the 'is' for buttons that trigger popups
-        //the 'has' for icons within a button that triggers a popup
-        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-            $(this).popover('hide');
-        }
-    });
-  });
 
   function myFunction(x) {
     var x = document.getElementById(x);

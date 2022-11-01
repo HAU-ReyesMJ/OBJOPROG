@@ -51,6 +51,33 @@ def my_profile(request):
     return render(request, "accounts/myprofile.html", context)
 
 
+def profile_view(request, slug=None):
+    # context = {
+    #     'title': obj.title,
+    #     'description': obj.description,
+    #     'price': obj.price,
+    #     'name': obj.name
+    # }
+    if slug:
+        obj = Profile.objects.get(user=User.objects.get(username__iexact=slug))
+        context = {"object": obj}
+        return render(request, "accounts/myprofile copy.html", context)
+    # elif "q" in request.GET:
+    #     q = request.GET["q"]
+    #     # data = Data.objects.filter(last_name__icontains=q)
+    #     multiple_q = Q(
+    #         Q(title__icontains=q)
+    #         | Q(description__icontains=q)
+    #         | Q(price__icontains=q)
+    #         | Q(name__icontains=q)
+    #     )
+    #     data = Profile.objects.filter(multiple_q)
+    # else:
+    #     data = Profile.objects.all()
+    # context = {"object": data}
+    # return render(request, "accounts/myprofile copy.html", context)
+
+
 @login_required
 def invites_received_view(request):
     profile = Profile.objects.get(user=request.user)
@@ -81,7 +108,6 @@ def invite_profiles_list_view(request):
 def profiles_list_view(request):
     user = request.user
     qs = Profile.objects.get_all_profiles(user)
-    print("hello world")
     context = {
         "qs": qs,
     }
@@ -90,7 +116,7 @@ def profiles_list_view(request):
 
 class ProfileDetailView(LoginRequiredMixin, DetailView):
     model = Profile
-    template_name = "profiles/detail.html"
+    template_name = "accounts/myprofile copy.html"
 
     # def get_object(self):
     #     slug = self.kwargs.get('slug')
@@ -111,9 +137,9 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
             rel_sender.append(item.sender.user)
         context["rel_receiver"] = rel_receiver
         context["rel_sender"] = rel_sender
-        context["posts"] = self.get_object().get_all_authors_posts()
+        # context["posts"] = self.get_object().get_all_authors_posts()
         context["len_posts"] = (
-            True if len(self.get_object().get_all_authors_posts()) > 0 else False
+            # True if len(self.get_object().get_all_authors_posts()) > 0 else False
         )
         return context
 

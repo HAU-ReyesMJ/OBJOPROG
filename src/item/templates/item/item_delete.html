@@ -36,8 +36,8 @@
             <td>{{i.description}}</td>
             <td>{{i.price}}</td>
             <td>{{i.name}}</td>
-            <td><a class="btn btn-sm btn-outline-danger" href="{% url 'item:item_delete' i.id %}">Delete</a></td>
-            <form action="{% url 'item:item_delete' i.id %}" method="POST">
+            <td><a class="btn btn-sm btn-outline-danger" href="{% url 'item:item_delete_by_id' i.id %}">Delete</a></td>
+            <form action="{% url 'item:item_delete_by_id' i.id %}" method="POST">
                 {% csrf_token %}
             <td><input class="btn btn-sm btn-outline-danger" type="submit" value="Delete"></td>
             </form>

@@ -1,32 +1,61 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>View Items - from the item app</h1>
-<form action="{% url 'item:item_view' %}" method="get">
-  <input name="q" type="text" placeholder="Search...">
-</form>
+
+<div class="container">
+    
+    <h1>View Items - from the item app</h1>
+    <form action="{% url 'item:item_view' %}" method="get">
+      <input name="q" type="text" placeholder="Search...">
+    </form>
+      <strong>Display</strong>
+      <div class="btn-group">
+          <a href="#" id="list" class="btn btn-default btn-sm"> <span class="bi bi-list-ul"></span> List</a> 
+          <a href="#" id="grid" class="btn btn-default btn-sm"> <span class="bi bi-grid-3x3-gap-fill"></span> Grid</a>
+      </div>
+  <div id="products" class="row">
+    {% for i in object %}
+      <div class="item col">
+        <a href="/item/{{i.id}}/view">
+          <div class="thumbnail">
+            
+              <img class="group list-group-image" src={% if i.image %}{{i.image.url}}{%else%}"https://source.unsplash.com/400x250/?mobile"{% endif %} alt="" />
+              <div class="caption">
+                  <p class="itemtext fs-5 fw-semibold" id="price">₱ {{i.price}}</p>
+                  <p class="itemtext fw-normal">{{i.title}}</p>
+                  <p class="itemtext fw-lighter lh-base">{{i.location}}</p>
+              </div>
+          </div>
+        </a>  
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+  <style>
+    .middle {
+      {% comment %} background-color: #18191A; {% endcomment %}
+      padding: 0px;
+    }
+    .caption {
+      padding-top: 7px;
+    }
+    .itemtext {
+      margin: 0px;
+      color: red;
+    }
+    img.group {
+      width: 277px;
+      height: 277px;
+      border-radius: 8px;
+      border: 1px solid #202122;
+    }
+  div.item {
+    margin: 4px;
+    max-width: 277px;
+    height: 379px;
+  }
 
 
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Price</th>
-        <th scope="col">Title</th>
-        <th scope="col">Location</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-        {% for i in object %}
-        <tr>
-            <th scope="row">{{i.id}}</th>
-            <td>{{i.price}}</td>
-            <td>{{i.title}}</td>
-            <td>{{i.location}}</td>
-            <td><a class="btn btn-sm btn-outline-danger" href="/item/{{i.id}}/view">Open</a></td>
-        </tr>
-        {% endfor %}
-    </tbody>
-  </table>
+  </style>
 {% endblock %}

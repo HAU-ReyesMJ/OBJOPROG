@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-
+from django.urls import include, path
 from accounts import views as accounts_views
 from .views import (
     my_profile,
@@ -13,6 +13,7 @@ from .views import (
     remove_from_friends,
     accept_invitation,
     reject_invitation,
+    profile_view,
 )
 
 app_name = "accounts"
@@ -53,5 +54,12 @@ urlpatterns = [
     path("remove-friend/", remove_from_friends, name="remove-friend"),
     path("my-invites/accept/", accept_invitation, name="accept-invite"),
     path("my-invites/reject/", reject_invitation, name="reject-invite"),
-    path("<slug>/", ProfileDetailView.as_view(), name="profile-detail-view"),
+    path("u/<slug>/", ProfileDetailView.as_view(), name="profile-detail-view"),
+    # path("u/<slug>/", profile_view, name="profile-view"),
+    path("", include("django.contrib.auth.urls")),
+    path(
+        "change-passwordx/",
+        auth_views.PasswordResetView.as_view(),
+        name="password_reset",
+    ),
 ]

@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class='form-group'>
-<form method='POST'> 
+<div class='form-group' action='{{ action_url }}' enctype='multipart/form-data'>
+<form method='POST' enctype="multipart/form-data"> 
     {% csrf_token %}
     {{ form.as_p }}
-    <input class="btn btn-lg btn-success" type="submit" value="Save">
+    <input class="btn btn-lg btn-success" type="submit" value="Publish">
 
 </form>
 </div>
+<style>
+    .form-group {
+        padding: 0 300px;
+    }
+</style>
 {% endblock %}

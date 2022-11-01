@@ -10,14 +10,13 @@
     <div class="ui segment">
         <div class="ui grid">
             <div class="row">
-                <div class="three wide column">
+                <div class="three wide column d-flex justify-content-center">
                     <img class="ui small circular image" src={{obj.image.url}}>
                 </div>
                 <div class="thirteen wide column">
                     <h3>{{obj.user}}</h3>
                     <p>{{obj.bio}}</p>
                     <a href={{obj.get_absolute_url}}><button class="ui primary button mb-5 w-big">See profile</button></a>
-                    <br>
 
                     {% if obj.user not in rel_receiver and obj.user not in rel_sender %}
                         <form action="{% url 'accounts:send-invite' %}" method="POST">
@@ -46,6 +45,18 @@
     {%endfor%}
     </ul>
     <style>
+        .three.wide.column {
+            align: center;
+        }
+        .ui {
+            background: transparent;
+            background-color: #202225;
+            border-radius: 8px;
+        }
+        .ui.segment {
+            background: transparent;
+
+        }
         .image {
             display: block;
             margin-left: auto;

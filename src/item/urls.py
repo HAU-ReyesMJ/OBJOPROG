@@ -9,5 +9,5 @@ urlpatterns = [
     path("edit/", item_edit_view, name="item_edit"),
     path("<int:id>/edit", item_edit_view, name="item_edit"),
     path("delete/", item_delete_view, name="item_delete"),
-    path("<int:id>/delete", item_delete_view, name="item_delete"),
+    path("<int:id>/delete", item_delete_view, name="item_delete_by_id"),
 ]

@@ -9,7 +9,7 @@ from accounts.models import Profile
 
 # Create your views here.
 def item_create_view(request):
-    form = ItemForm(request.POST or None)
+    form = ItemForm(request.POST, request.FILES)
     form_class = ItemForm
 
     if form.is_valid():
@@ -43,7 +43,7 @@ def item_detail_view(request, id=None):
         )
         data = Item.objects.filter(multiple_q)
     else:
-        data = Item.objects.all()
+        data = Item.objects.all().order_by("-id")
     context = {"object": data}
     return render(request, "item/item_detail.html", context)
 
@@ -59,7 +59,7 @@ def item_edit_view(request, id=None):
         context = {"object": obj}
         return render(request, "item/item_edit_individual.html", context)
     else:
-        obj = Item.objects.all()
+        obj = Item.objects.all().order_by("-id")
         context = {"object": obj}
         return render(request, "item/item_edit.html", context)
 
@@ -75,7 +75,7 @@ def item_delete_view(request, id=None):
         context = {"object": obj}
         return render(request, "item/item_delete_confirm.html", context)
     else:
-        obj = Item.objects.all()
+        obj = Item.objects.all().order_by("-id")
         context = {"object": obj}
         return render(request, "item/item_delete.html", context)
 

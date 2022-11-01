@@ -5,13 +5,38 @@
 <div class="list-group list-group-flush">
   FRIEND LIST:
 {% for user in friends %}
-<button type="button" id="contactButton" class="btn btn-secondary text-start btn-lg fs-5 fw-normal" data-bs-toggle="popover" data-placement="left" title="User Info">
+<button type="button" id="contactButton" class="btn btn-secondary text-start btn-lg fs-5 fw-normal" data-bs-toggle="popover" data-bs-placement="left">
   <div class="user-avatar">
     {% comment %} <img src="https://bootdey.com/img/Content/user_6.jpg" alt=""> {% endcomment %}
     <img src={{user.image.url}}>
     {{user.user}}
   </div>
 </button>
+<div class="popper-content d-none">
+{% comment %}   
+  <div class="banner">
+    <img src="https://via.placeholder.com/400x200/" alt="">
+  </div> {% endcomment %}
+
+  <div class="user-avatar">
+    <img src="{{user.image.url}}" alt="">
+  </div>
+  <div class="info">
+    <div class="title">
+      <a href="https://bootdey.com/profile/Dey-Dey">{{user.user}}</a>
+    </div>
+    <div class="description">{{user.user.first_name}} {{user.user.last_name}}</div>
+    <div class="description">{{user.bio}}</div>
+  </div>
+  <div class="bottom d-flex justify-content-center">
+    <a href="{{user.get_absolute_url}}" class="btn btn-primary btn-xs card-links">
+      View Profile
+    </a>
+    <a href="https://facebook.com/bootdey" class="btn btn-primary btn-xs card-links">
+      Send Message
+    </a>
+  </div>
+</div>
 {% comment %} <button id="popperButton" type="button" class="list-group-item list-group-item-action">{{user}}</button> {% endcomment %}
 {% endfor %}
 </div>
@@ -27,13 +52,35 @@
 
 <!-- Sidebar -->
 <style>
+  .card-links {
+    margin: 5px 10px;
+  }
+  .popover {
+    --bs-popover-bg: transparent;
+    --bs-popover-arrow-border: transparent;
+    --bs-popover-border-color: transparent;
+  }
+  .popover-body{
+    height: 410px;
+    width: 324px;
+    max-width: 324px;
+    background-color: #292B2F;
+    border-radius: 8px;
+  }
   .user-avatar img {
     width: 32px;
     height: 32px;
     max-width: 32px;
     max-height: 32px;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
+    border-radius: 50%;
+    margin-right: 7px;
+    margin-left: 3px;
+  }
+  .popover-body > .user-avatar img {
+    width: 80px;
+    height: 80px;
+    max-width: 80px;
+    max-height: 80px;
     border-radius: 50%;
     margin-right: 7px;
     margin-left: 3px;
@@ -43,7 +90,6 @@
     //font-size: xx-large;
     border: none;
     cursor: pointer;
-    outline: none;
     padding: 5px;
   }
   button#contactButton:hover {
@@ -116,3 +162,53 @@
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
   }
 </style>
+<script>
+  $(document).ready(function () {
+    var popoverTriggerList = [].slice.call(
+      document.querySelectorAll('[data-bs-toggle="popover"]')
+    );
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+      return new bootstrap.Popover(popoverTriggerEl, {
+        container: 'body',
+        offset: '184, 65',
+        placement: function (context, source) {
+          var position = $(source).position();
+          console.log(position)
+          return "left";
+          if (position.left > 515) {
+              return "left";
+          }
+  
+          if (position.left < 515) {
+              return "left";
+          }
+  
+          if (position.top < 110){
+              return "left";
+          }
+  
+          return "left";
+        },
+        fallbackPlacement: ['left'],
+        flip: 'left',
+        html: true,
+        content: function () {
+          return $(this).next(".popper-content").html();
+        },
+      });
+    });
+    $("body").on("click", function (e) {
+      $('[data-bs-toggle="popover"]').each(function () {
+        //the 'is' for buttons that trigger popups
+        //the 'has' for icons within a button that triggers a popup
+        if (
+          !$(this).is(e.target) &&
+          $(this).has(e.target).length === 0 &&
+          $(".popover").has(e.target).length === 0
+        ) {
+          $(this).popover("hide");
+        }
+      });
+    });
+  });
+</script>
