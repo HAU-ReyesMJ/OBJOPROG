@@ -1,36 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Single Edit View</h1>
+<div class='form-group' action='{{ action_url }}' enctype='multipart/form-data'>
+<form method='POST' enctype="multipart/form-data"> 
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input class="btn btn btn-success" type="submit" value="Edit Listing">
 
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Title</th>
-        <th scope="col">Description</th>
-        <th scope="col">Price</th>
-        <th scope="col">Name</th>
-        <th scope="col">Location</th>
-        <th scope="col">Available</th>
-        <th scope="col">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">{{object.id}}</th>
-            <td><input class="form-control form-control-sm" type="text" placeholder=".form-control-sm" value={{object.title}}></td>
-            <td><input class="form-control form-control-sm" type="text" placeholder=".form-control-sm" value={{object.description|safe}}></td>
-            <td><input class="form-control form-control-sm" type="text" placeholder=".form-control-sm" value={{object.price}}></td>
-            <td><input class="form-control form-control-sm" type="text" placeholder=".form-control-sm" value={{object.name}}></td>
-            <td><input class="form-control form-control-sm" type="text" placeholder=".form-control-sm" value={{object.location}}></td>
-              {% if object.markAsSold == True %}
-              <td><input class="form-control form-control-sm" type="text" placeholder=".form-control-sm" value=✔️></td>
-              {% else %}
-              <td><input class="form-control form-control-sm" type="text" placeholder=".form-control-sm" value=❌></td>
-              {% endif %}
-              <td><a class="btn btn-sm btn-outline-danger" href="/item/{{object.id}}/edit">Edit</a></td>
-        </tr> 
-    </tbody>
-  </table>
+</form>
+</div>
+<style>
+    .form-group {
+        padding: 0 300px;
+    }
+</style>
 {% endblock %}

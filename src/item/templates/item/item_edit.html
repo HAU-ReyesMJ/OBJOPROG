@@ -17,15 +17,14 @@
     <tbody>
         {% for i in object %}
         <tr>
-            <form action="{{ i.get_absolute_url }}" method="POST">
                 {% csrf_token %}
                 <th scope="row">{{i.id}}</th>
                 <td class="editable" data-id="{{ i.id }}" data-type="title">{{i.title}}</td>
                 <td class="editable" data-id="{{ i.id }}" data-type="description">{{i.description}}</td>
                 <td class="editable" data-id="{{ i.id }}" data-type="price">{{i.price}}</td>  
                 <td class="editable" data-id="{{ i.id }}" data-type="name">{{i.name}}</td>
-                <td><input class="btn btn-sm btn-outline-danger" type="submit" value="Edit"></td>
-            </form>
+                {% comment %} <td><input class="btn btn-sm btn-outline-danger" type="submit" value="Edit"></td> {% endcomment %}
+                <td><a href="{{i.get_absolute_url}}" class="btn btn-secondary btn-xs card-links">Edit</a></td>
         </tr>
         {% endfor %}
     </tbody>

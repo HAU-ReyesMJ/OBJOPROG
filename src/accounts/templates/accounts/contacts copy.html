@@ -7,32 +7,27 @@
 {% for user in friends %}
 <button type="button" id="contactButton" class="btn btn-secondary text-start btn-lg fs-5 fw-normal" data-bs-toggle="popover" data-bs-placement="left">
   <div class="user-avatar">
-    {% comment %} <img src="https://bootdey.com/img/Content/user_6.jpg" alt=""> {% endcomment %}
     <img src={{user.image.url}}>
     {{user.user}}
   </div>
 </button>
 <div class="popper-content d-none">
-{% comment %}   
-  <div class="banner">
-    <img src="https://via.placeholder.com/400x200/" alt="">
-  </div> {% endcomment %}
-
+  <div class="profile-card-header">
   <div class="user-avatar">
     <img src="{{user.image.url}}" alt="">
   </div>
   <div class="info">
-    <div class="title">
-      <a href="https://bootdey.com/profile/Dey-Dey">{{user.user}}</a>
-    </div>
-    <div class="description">{{user.user.first_name}} {{user.user.last_name}}</div>
-    <div class="description">{{user.bio}}</div>
+    <div class="description"><h3>{{user.user.first_name}} {{user.user.last_name}}</h3></div>
+    <div class="description"><h5>@{{user.user}}</h5></div>
   </div>
+  </div>
+  <div class="aboutme"><h5>{{user.bio|linebreaks}}</h5></div>
+  
   <div class="bottom d-flex justify-content-center">
     <a href="{{user.get_absolute_url}}" class="btn btn-primary btn-xs card-links">
       View Profile
     </a>
-    <a href="https://facebook.com/bootdey" class="btn btn-primary btn-xs card-links">
+    <a href="/" class="btn btn-primary btn-xs card-links">
       Send Message
     </a>
   </div>
@@ -52,6 +47,23 @@
 
 <!-- Sidebar -->
 <style>
+  .profile-card-header {
+    display: flex;
+    gap: 5px;
+  }
+  .bottom {
+    {% comment %} background-color: red; {% endcomment %}
+    align-items: center;
+    justify-content: center;
+  }
+  .aboutme {
+    padding: 20px 5px;
+  }
+  .description {
+    padding: 1px 0px;
+    align-items: center;
+    justify-content: center;
+  }
   .card-links {
     margin: 5px 10px;
   }
@@ -67,6 +79,11 @@
     background-color: #292B2F;
     border-radius: 8px;
   }
+  .info {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
   .user-avatar img {
     width: 32px;
     height: 32px;
@@ -76,7 +93,7 @@
     margin-right: 7px;
     margin-left: 3px;
   }
-  .popover-body > .user-avatar img {
+  .popover-body > * > .user-avatar img {
     width: 80px;
     height: 80px;
     max-width: 80px;

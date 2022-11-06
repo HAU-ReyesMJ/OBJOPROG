@@ -61,7 +61,7 @@ def profile_view(request, slug=None):
     if slug:
         obj = Profile.objects.get(user=User.objects.get(username__iexact=slug))
         context = {"object": obj}
-        return render(request, "accounts/myprofile copy.html", context)
+        return render(request, "accounts/user_profile_page.html", context)
     # elif "q" in request.GET:
     #     q = request.GET["q"]
     #     # data = Data.objects.filter(last_name__icontains=q)
@@ -75,7 +75,7 @@ def profile_view(request, slug=None):
     # else:
     #     data = Profile.objects.all()
     # context = {"object": data}
-    # return render(request, "accounts/myprofile copy.html", context)
+    # return render(request, "accounts/user_profile_page.html", context)
 
 
 @login_required
@@ -116,7 +116,7 @@ def profiles_list_view(request):
 
 class ProfileDetailView(LoginRequiredMixin, DetailView):
     model = Profile
-    template_name = "accounts/myprofile copy.html"
+    template_name = "accounts/user_profile_page.html"
 
     # def get_object(self):
     #     slug = self.kwargs.get('slug')

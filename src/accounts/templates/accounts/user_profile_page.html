@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {{object.user.first_name|upper}} {{object.user.last_name|upper}}<br>
+        @{{object.user}}<br><br>
+    
+    <div class = "grid-container">
+        <article class="item 1">
+        <img src={{object.image.url}} id="profilePic">
+        </article>
+        <article class="item bio">
+        {{profile.bio|linebreaks}}
+        </article>
+        <article class="item 3">
+        <div class="friendBox">
+            <div class="friendTitle">Friends ({{profile.get_friends_no}}) :</div>
+            <div class="friendGrid">
+                {%for friend in profile.get_friends_profile%}
+                    <a href="{{friend.get_absolute_url}}">
+                        <div class="frienditem">
+                            <img class="friend_img" src={{friend.image.url}}><br>
+                            {{friend.user}}
+                        </div>
+                    </a>
+                {%endfor%}
+            </div>
+        </div>
+    </article>
+    </div>
+    <style>
+        #profilePic {
+            display: block;
+            margin-left: 0;
+            height: 474px;
+            width: 350px;
+            border-color: #202225;
+            border-style: solid;
+            object-fit: contain;
+            background-color: #2F3136;
+        }
+        .friendBox {
+            height: 250px;
+            overflow:auto;
+            overflow-x: hidden;
+            width: 350px;
+            border-color: #202225;
+            border-style: solid;
+        }
+        .friendTitle {
+            padding: 0 10px;
+        }
+        .friendGrid {
+            display: grid;
+            gap: 10px;
+            padding: 10px;
+            grid-template-columns: repeat(3, 1fr)
+        }
+        .frienditem {
+            justify-content: center;
+            text-align: center;
+        }
+        .friend_img {
+            height: 100px;
+            width: 100px;
+            border-radius: 20%;
+        }
+        .grid-container {
+            display: grid;
+            gap: 10px;
+            flex-wrap: wrap;
+            grid-template-columns: repeat(2, 0fr)
+        }
+        .bio {
+            border-color: #202225;
+            border-style: solid;
+            padding: 20px;
+            width: 480px;
+            height: 530px;
+
+        }
+        #fullName {
+            text-transform: uppercase;
+        }
+    </style>
+{% endblock %}

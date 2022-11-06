@@ -37,4 +37,13 @@ def render_logged_in_userx_list(context):
     }
 
 
+@register.simple_tag(takes_context=True)
+def get_logged_in_user_profile_img(context):
+    request = context["request"]
+    profile = Profile.objects.get(user=request.user)
+    print(profile.get_friends())
+    print(get_all_logged_in_users())
+    return profile.image.url
+
+
 # qs = Profile.objects.get_all_profiles(user)

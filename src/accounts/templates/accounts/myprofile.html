@@ -1,11 +1,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<img src={{profile.image.url}} id="profilePic" >
-    <h1>Profile of: {{profile.user}}</h1>
+    <img src={{profile.image.url}} id="profilePic" >
+    <div class='form-group' action='{{ action_url }}' enctype='multipart/form-data'>
+    <form method='POST' enctype="multipart/form-data"> 
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn btn btn-success" type="submit" value="Save">
+        <a href="/u/{{request.user}}" class="btn btn-primary btn card-links"> View Profile</a>
+    
+    </form>
+    </div>
+    
+
+
+
+
+    
+    {% comment %} <h1>Profile of: {{profile.user}}</h1>
         <br>
     friend number: {{profile.get_objects_no}}
-    hello
+    hello {% endcomment %}
 
     <style>
         #profilePic {
@@ -14,6 +29,9 @@
             margin-right: auto;
             height: 120px;
             border-radius: 25%;
+        }
+        .form-control {
+            width: 800px;
         }
     </style>
 {% endblock %}

@@ -10,7 +10,7 @@
     >
       <div class="container-fluid">
         <a class="navbar-brand" href="#" onclick="myFunction('leftNav')">
-          <img src={% static "images/list.svg" %}>
+          <i class="bi bi-list fs-3 mb-3"></i>
         </a>
         </svg>
         <a class="navbar-brand" href="/">🐪 Silk Road</a>
@@ -28,7 +28,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             {% comment %} {% if user.is_authenticated %} {% endcomment %}
-            <li class="nav-item dropdown">
+            {% comment %} <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
                 href="#"
@@ -55,11 +55,11 @@
                   >
                 </li>
               </ul>
-            </li>
+            </li> {% endcomment %}
 
-            <li class="nav-item">
+            {% comment %} <li class="nav-item">
               <a class="nav-link" href="/about">🤔 About</a>
-            </li>
+            </li> {% endcomment %}
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -68,6 +68,7 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
+              
                 😺Admin
               </a>
               <ul class="dropdown-menu">
@@ -89,15 +90,9 @@
           {% comment %} {%endif%} {% endcomment %}
           <ul class="navbar-nav mb-2 mb-lg-0">
             {% if user.is_authenticated %}
-            <a class="navbar-brand" href="#" onclick="myFunction('contactList')">
-              <img src={% static "images/people-fill.svg" %}>
+            <a class="navbar-brand" href="#" onclick="myFunction('contactList')" id="rightIcon">
+              <i class="bi bi-people-fill fs-5 mb-3"></i>
             </a>
-            <li class="nav-item">
-              <a class="nav-link" href="/">{{request.user}}</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/logout">Logout</a>
-            </li>
             {% else %}
             <li class="nav-item">
               <a class="nav-link" href="/login">Login</a>
@@ -106,6 +101,42 @@
               <a class="nav-link" href="/register">Sign up</a>
             </li>
             {% endif %}
+            {% if user.is_authenticated %}
+          {% load accounts_tag %}
+          <div class="dropdown">
+            <a
+              class="d-flex align-items-center hidden-arrow"
+              href="#"
+              id="navbarDropdownMenuAvatar"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <img
+                src= {% get_logged_in_user_profile_img %}
+                class="rounded-circle"
+                height="32"
+                width="32"
+                loading="lazy"
+              />
+            </a>
+            <ul
+              class="dropdown-menu dropdown-menu-end"
+              aria-labelledby="navbarDropdownMenuAvatar"
+            >
+              <h6 class="dropdown-header">{{request.user}}</h6>
+              <li>
+                <a class="dropdown-item" href="/u/{{request.user}}">View my profile</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/myprofile">Edit my profile</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/logout">Logout</a>
+              </li>
+            </ul>
+          </div>
+          {% endif %}
           </ul>
         </div>
       </div>
@@ -114,8 +145,29 @@
 </html>
 
 <style>
-  #main-navbar{
+  #main-navbar {
     background-color: #202225;
-    height: 48px;
+    height: 56px;
+    padding: 0 16px;  
+  }
+  .dropdown-menu {
+    background-color: #282828;
+  }
+  .dropdown-header {
+    color: #C2C3C4;
+  }
+  .dropdown-item {
+    color: #C2C3C4;
+  }
+  .dropdown-menu a:hover {
+    background-color: #3E3E3E;
+    
+    color: #C2C3C4;
+  }
+  #rightIcon {
+    margin: 0 30px;
+  }
+  .rounded-circle {
+    background-color: white;
   }
 </style>

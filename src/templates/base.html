@@ -41,6 +41,7 @@
                 <a href="/myprofile/" style="color:inherit"><button class="btn btn-secondary text-start btn-lg fs-5 fw-normal" type="button" id="xxx" ><i class="bi bi-person-lines-fill" id="bsIcon"></i> My Profile</button></a>
                 <a href="/my-invites/" style="color:inherit"><button class="btn btn-secondary text-start btn-lg fs-5 fw-normal" type="button" id="xxx" ><i class="bi bi-person-plus" id="bsIcon"></i> Friend Requests</button></a>
                 <a href="/all-profiles/" style="color:inherit"><button class="btn btn-secondary text-start btn-lg fs-5 fw-normal" type="button" id="xxx" ><i class="bi bi-search" id="bsIcon"></i> All Profiles</button></a>
+                <a href="/about/" style="color:inherit"><button class="btn btn-secondary text-start btn-lg fs-5 fw-normal" type="button" id="xxx" ><i class="bi bi-file-person" id="bsIcon"></i> About</button></a>
                 </div>
             </div>
           {%endif%}
@@ -65,9 +66,13 @@
     <style>
       html *
       {
-        font-size: 1em !important;
-        color: #C2C3C4 !important;
+        {% comment %} font-size: 1em; {% endcomment %}
+        color: #C2C3C4;
         font-family: "Segoe UI" !important;
+      }
+      .form-control
+      {
+        color: #black;
       }
       #bsIcon {
         padding-right: 20px;
@@ -83,6 +88,7 @@
         cursor: pointer;
         outline: none;
         width: 100%;
+        color: #C2C3C4;
       }
       button#xxx:hover {
         background-color: #35383D;
@@ -125,14 +131,13 @@
         flex-direction: column;
      }
       .full-screen > * {
-        height: 48px;
+        height: 56px;
         flex: 0 0 auto;
         overflow: scroll;
         overflow-x: hidden;
      }
       .full-screen > .header, .full-screen > .footer {
         background: #555;
-        color: white;
      }
       .full-screen > .main {
         flex: 1 1 auto;
@@ -198,4 +203,4 @@
   })
    {% endcomment %}
 </script>
-{% endblock %}
+{% endblock %}  

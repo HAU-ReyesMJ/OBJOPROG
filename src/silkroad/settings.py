@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "accounts.apps.AccountsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -44,7 +45,8 @@ INSTALLED_APPS = [
     "pages",
     # 'accounts',
     "contacts",
-    "accounts.apps.AccountsConfig",
+    
+    
 ]
 
 MIDDLEWARE = [
@@ -124,15 +126,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "/static/"
+
+
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATICFILES_DIRS = [
-    os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "static_root")
+    os.path.join(os.path.dirname(BASE_DIR),  "static_cdn",  "static_root", )
 ]
 
 # STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "static_root")
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "media_root")
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "media_root", )
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -140,3 +144,20 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "media_root")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_REDIRECT_URL = "/"
+
+
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# # EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+# # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
+# EMAIL_FILE_PATH = BASE_DIR / 'emails'
+
+#smtp config
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'delossantoskristian5@gmail.com'
+EMAIL_HOST_PASSWORD = 'necyarjjzeskxcab'

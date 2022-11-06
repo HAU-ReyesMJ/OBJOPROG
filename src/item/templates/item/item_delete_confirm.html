@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1>Are you sure you want to delete?</h1>
-<form action="{% url 'item:item_delete' object.id %}" method="POST">
+<form action="{% url 'item:item_delete_by_id' object.id %}" method="POST">
   {% csrf_token %}
   <a href={% url 'item:item_delete' %}Cancel</a>
   <input class="btn btn-outline-danger" type="submit" value="Delete">

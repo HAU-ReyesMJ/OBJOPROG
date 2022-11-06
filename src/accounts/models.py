@@ -56,7 +56,6 @@ class Profile(models.Model):
         return reverse("accounts:profile-detail-view", kwargs={"slug": self.slug})
 
     def get_friends(self):
-        print("fuck")
         return self.friends.all()
 
     def get_friends_profile(self):
@@ -112,6 +111,7 @@ class Profile(models.Model):
             else:
                 to_slug = str(self.user)
         self.slug = to_slug
+        self.slug = str(self.user)
         super().save(*args, **kwargs)
 
 

@@ -55,8 +55,19 @@ def item_detail_view(request, id=None):
 
 def item_edit_view(request, id=None):
     if id:
-        obj = Item.objects.get(id=id)
-        context = {"object": obj}
+        item = Item.objects.get(id=id)
+        form = ItemForm(request.POST or None, request.FILES or None, instance=item)
+        confirm = False
+        print("my id is: ", item.title)
+        if request.method == "POST":
+            if form.is_valid():
+                form.save()
+                confirm = True
+        context = {
+            "item": item,
+            "form": form,
+            "confirm": confirm,
+        }
         return render(request, "item/item_edit_individual.html", context)
     else:
         obj = Item.objects.all().order_by("-id")

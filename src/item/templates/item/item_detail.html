@@ -4,11 +4,17 @@
 
 <div class="container">
     
-    <h1>View Items - from the item app</h1>
+    <h5>Silk Road Marketplace</h5>
     <form action="{% url 'item:item_view' %}" method="get">
-      <input name="q" type="text" placeholder="Search...">
+      <input name="q" type="text" placeholder="Search..." class="form-control">
     </form>
-      <strong>Display</strong>
+    <br>
+      <a href="{% url "item:item_create" %}"><button class="btn btn-success bi-bi-basket" type="submit"><i class="bi bi-basket"></i> Create Listing</button></a>
+      <a href="{% url "item:item_edit" %}"><button class="btn btn-primary" type="submit"><i class="bi bi-pencil-square"></i> Edit item</button></a>
+      <a href="{% url "item:item_delete" %}"><button class="btn btn-danger" type="submit"><i class="bi bi-trash"></i> Delete item</button></a>
+      <br>
+      <br>
+    <strong>Display</strong>
       <div class="btn-group">
           <a href="#" id="list" class="btn btn-default btn-sm"> <span class="bi bi-list-ul"></span> List</a> 
           <a href="#" id="grid" class="btn btn-default btn-sm"> <span class="bi bi-grid-3x3-gap-fill"></span> Grid</a>
@@ -26,7 +32,8 @@
                   <p class="itemtext fw-lighter lh-base">{{i.location}}</p>
               </div>
           </div>
-        </a>  
+        </a> 
+         
       </div>
     {% endfor %}
   </div>
@@ -42,7 +49,6 @@
     }
     .itemtext {
       margin: 0px;
-      color: red;
     }
     img.group {
       width: 277px;
@@ -55,7 +61,9 @@
     max-width: 277px;
     height: 379px;
   }
-
+  .form-control {
+    width: 340px;
+  }
 
   </style>
 {% endblock %}
