@@ -22,8 +22,10 @@ def register(request):
     if request.method == "POST":
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
-
+            obj = form.save(commit=False)
+            # obj.first_name = request.user.first_name
+            # obj.last_name = request.user.first_name
+            obj.save()
             messages.success(
                 request, f"Your account has been created. You can log in now!"
             )

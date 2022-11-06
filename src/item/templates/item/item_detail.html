@@ -4,7 +4,8 @@
 
 <div class="container">
     
-    <h5>Silk Road Marketplace</h5>
+    <h1>Silk Road Marketplace</h1>
+    <div class="marketplace-header">
     <form action="{% url 'item:item_view' %}" method="get">
       <input name="q" type="text" placeholder="Search..." class="form-control">
     </form>
@@ -12,7 +13,7 @@
       <a href="{% url "item:item_create" %}"><button class="btn btn-success bi-bi-basket" type="submit"><i class="bi bi-basket"></i> Create Listing</button></a>
       <a href="{% url "item:item_edit" %}"><button class="btn btn-primary" type="submit"><i class="bi bi-pencil-square"></i> Edit item</button></a>
       <a href="{% url "item:item_delete" %}"><button class="btn btn-danger" type="submit"><i class="bi bi-trash"></i> Delete item</button></a>
-      <br>
+    </div>
       <br>
     <strong>Display</strong>
       <div class="btn-group">
@@ -40,6 +41,10 @@
 </div>
 
   <style>
+    .marketplace-header {
+      display: flex;
+      gap: 10px;
+    }
     .middle {
       {% comment %} background-color: #18191A; {% endcomment %}
       padding: 0px;

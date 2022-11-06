@@ -93,6 +93,9 @@ class Profile(models.Model):
         super().__init__(*args, **kwargs)
         self.__initial_first_name = self.first_name
         self.__initial_last_name = self.last_name
+        if self.first_name == "" and self.last_name == "":
+            self.first_name = self.user.first_name
+            self.last_name = self.user.last_name
 
     def save(self, *args, **kwargs):
         ex = False

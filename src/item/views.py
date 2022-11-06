@@ -4,16 +4,19 @@ from django.db.models import Q
 
 from .forms import ItemForm
 from .models import Item
+from django.contrib.auth.decorators import login_required
 
 from accounts.models import Profile
 
 # Create your views here.
+@login_required
 def item_create_view(request):
     form = ItemForm(request.POST, request.FILES)
     form_class = ItemForm
 
     if form.is_valid():
         obj = form.save(commit=False)
+        obj.seller = Profile.objects.get(user=request.user)
         obj.name = request.user.get_username()
         obj.save()
 

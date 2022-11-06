@@ -1,37 +1,82 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Individual View</h1>
 
+<div class="container">
+    
+  <div id="products" class="row">
+      <div class="item col">
+          <div class="thumbnail">
+            
+              <img class="group list-group-image" src={% if object.image %}{{object.image.url}}{%else%}"https://source.unsplash.com/400x250/?mobile"{% endif %} alt="" />
+              <div class="caption">
+                  <h2>Name: {{object.title}}</h2>
+                  <h3>₱ {{object.price}}</h3>
+                  <p class="itemtext fw-lighter lh-base">Location: {{object.location}}</p>
+                  <p class="itemtext fw-lighter lh-base">Description: {{object.description|linebreaks}}</p>
+                  <p class="itemtext fw-lighter lh-base">Seller:</p>
+                  <a href={{object.seller.get_absolute_url}}>
+                  <button type="button" id="sellerButton" class="btn btn-secondary text-start btn-lg fs-5 fw-normal" data-bs-toggle="popover" data-bs-placement="left">
+                    <div class="seller-profile">
+                      <img class="seller-avatar" src={{object.seller.image.url}}>
+                      <div class="seller-details">
+                        {{object.seller.first_name}} {{object.seller.last_name}}<br>
+                        {{object.seller.user}}
+                      </div>
+                    </div>
+                  </button>
+                  </a>
+              </div>
+          </div>
+         
+      </div>
+  </div>
+</div>
 
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Title</th>
-        <th scope="col">Description</th>
-        <th scope="col">Price</th>
-        <th scope="col">Name</th>
-        <th scope="col">Location</th>
-        <th scope="col">Available</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">{{object.id}}</th>
-            <td>{{object.title}}</td>
-            <td>{{object.description}}</td>
-            <td>{{object.price}}</td>
-            <td>{{object.name}}</td>
-            <td>{{object.location}}</td>
-            <td>
-              {% if object.markAsSold == True %}
-                ✔️
-              {% else %}
-                ❌
-              {% endif %}
-            </td>
-        </tr>
-    </tbody>
-  </table>
+  <style>
+    .seller-profile {
+      display: flex;
+    }
+    
+    .seller-avatar {
+      height: 48px;
+      width: 48px;
+      border-radius: 50%; 
+    }
+    #sellerButton {
+      width: 300px;
+    }
+    .thumbnail {
+      display: flex;
+      gap: 30px;
+    }
+    .marketplace-header {
+      display: flex;
+      gap: 10px;
+    }
+    .middle {
+      {% comment %} background-color: #18191A; {% endcomment %}
+      padding: 0px;
+    }
+    .caption {
+      padding-top: 7px;
+    }
+    .itemtext {
+      margin: 0px;
+    }
+    img.group {
+      width: 750px;
+      height: 850px;
+      border-radius: 8px;
+      border: 1px solid #202122;
+    }
+  div.item {
+    margin: 4px;
+    height: 850px;
+  }
+  .form-control {
+    width: 340px;
+  }
+
+  </style>
 {% endblock %}

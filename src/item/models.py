@@ -2,6 +2,7 @@ from turtle import title
 from unicodedata import name
 from django.db import models
 from django.urls import reverse
+from accounts.models import Profile
 
 # Create your models here.
 class Item(models.Model):
@@ -12,6 +13,9 @@ class Item(models.Model):
         blank=True, null=True, upload_to="marketplace_pics"
     )  # default="default.png"
     name = models.TextField(null=True, blank=True)
+    seller = models.ForeignKey(
+        Profile, on_delete=models.CASCADE, related_name="seller", null=True, blank=True
+    )
     location = models.TextField(null=True, blank=True)
     markAsSold = models.BooleanField()
 
