@@ -15,6 +15,7 @@ from .views import (
     accept_invitation,
     reject_invitation,
     profile_view,
+    change_password,
 )
 
 app_name = "accounts"
@@ -51,6 +52,7 @@ urlpatterns = [
         invite_profiles_list_view,
         name="invite-profiles-view",
     ),
+    path("change-password", change_password, name="change_password"),
     path("send-invite/", send_invitation, name="send-invite"),
     path("remove-friend/", remove_from_friends, name="remove-friend"),
     path("my-invites/accept/", accept_invitation, name="accept-invite"),
