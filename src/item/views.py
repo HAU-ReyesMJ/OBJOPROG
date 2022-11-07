@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.db.models import Q
-
+from django.shortcuts import reverse
 from .forms import ItemForm
 from .models import Item
 from django.contrib.auth.decorators import login_required
@@ -25,19 +25,12 @@ def item_create_view(request):
 
 
 def item_detail_view(request, id=None):
-    # context = {
-    #     'title': obj.title,
-    #     'description': obj.description,
-    #     'price': obj.price,
-    #     'name': obj.name
-    # }
     if id:
         obj = Item.objects.get(id=id)
         context = {"object": obj}
         return render(request, "item/item_detail_inidividual.html", context)
     elif "q" in request.GET:
         q = request.GET["q"]
-        # data = Data.objects.filter(last_name__icontains=q)
         multiple_q = Q(
             Q(title__icontains=q)
             | Q(description__icontains=q)
@@ -50,12 +43,8 @@ def item_detail_view(request, id=None):
     context = {"object": data}
     return render(request, "item/item_detail.html", context)
 
-    # else:
-    #     obj = Item.objects.all()
-    #     context = { 'object': obj }
-    #     return render(request, "item/item_detail.html", context)
 
-
+@login_required
 def item_edit_view(request, id=None):
     if id:
         item = Item.objects.get(id=id)
@@ -78,11 +67,12 @@ def item_edit_view(request, id=None):
         return render(request, "item/item_edit.html", context)
 
 
+@login_required
 def item_delete_view(request, id=None):
     if id and request.method == "POST":
         objSingle = Item.objects.get(id=id)
         objSingle.delete()
-        return redirect("/../item/delete")
+        return redirect(reverse("item:item_view"))
     elif id:
         obj = Item.objects.get(id=id)
         print("")
@@ -92,14 +82,3 @@ def item_delete_view(request, id=None):
         obj = Item.objects.all().order_by("-id")
         context = {"object": obj}
         return render(request, "item/item_delete.html", context)
-
-
-# def item_delete_confirm_view(request, id):
-#     obj = Item.objects.get(id=id)
-#     if request.method == "POST":
-#         obj.delete()
-#         return redirect('item_delete')
-#     context = {
-#         'object': obj
-#     }
-#     return render(request, "item/item_delete_confirm.html", context)
