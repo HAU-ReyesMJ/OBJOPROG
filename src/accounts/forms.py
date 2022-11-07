@@ -24,7 +24,7 @@ class UserRegistrationForm(UserCreationForm):
 class ProfileModelForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ("first_name", "last_name", "bio")
+        fields = ("image", "first_name", "last_name", "bio")
         widgets = {
             "first_name": forms.TextInput(attrs={"class": "form-control"}),
             "last_name": forms.TextInput(attrs={"class": "form-control"}),

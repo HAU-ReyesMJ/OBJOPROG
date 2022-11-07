@@ -11,7 +11,7 @@
         <div class="ui grid">
             <div class="row">
                 <div class="three wide column d-flex justify-content-center">
-                    <img class="ui small circular image" src={{obj.image.url}}>
+                    <img class="ui small circular image" src={{obj.image.url}} id="all-profile-img">
                 </div>
                 <div class="thirteen wide column" id="profileButtons">
                     <h3>{{obj.user}}</h3>
@@ -47,6 +47,8 @@
     {%endfor%}
     </ul>
     <style>
+        img {
+        }
         .three.wide.column {
             align: center;
         }
@@ -59,11 +61,11 @@
             background: transparent;
 
         }
-        .image {
-            display: block;
+        #all-profile-img {
+            object-fit: cover;
+            height: 150px;
             margin-left: auto;
             margin-right: auto;
-            width: 50%;
         }
         .form
         #profileButtons {
